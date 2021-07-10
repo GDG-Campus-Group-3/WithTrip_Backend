@@ -79,7 +79,7 @@ public class ActionGDG extends MultiActionController {
 		}
 		GDGManager.getBoardList(out);
 	}
-	
+
 	public void getBoardDetail(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		PrintWriter		out;
 		
@@ -94,5 +94,28 @@ public class ActionGDG extends MultiActionController {
 
 		int seq = Integer.parseInt(request.getParameter("SEQ"));
 		GDGManager.getBoardDetail(seq, out);
+	}
+	
+	public void newBoard(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		PrintWriter		out;
+		
+		try {
+			response.setContentType("text/html; charset=utf-8");
+
+			out = response.getWriter();
+		}
+		catch (IOException ioe) {
+			return;
+		}
+
+		String tag = request.getParameter("TAG");
+		String title = request.getParameter("TITLE");
+		String gps = request.getParameter("GPS");
+		String location_name = request.getParameter("LOCATION_NAME");
+		String start_date = request.getParameter("START_DATE");
+		String last_date = request.getParameter("LAST_DATE");
+		int count = Integer.parseInt(request.getParameter("COUNT"));
+		String content = request.getParameter("CONTENT");
+		GDGManager.newBoard(tag, title, gps, location_name, start_date, last_date, count, content, out);
 	}
 }
