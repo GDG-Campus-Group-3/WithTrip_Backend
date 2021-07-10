@@ -52,7 +52,7 @@ public class GDGManager {
 				JsonObject jo = new JsonObject();
 				jo.addProperty("SEQ", Integer.parseInt(o.get("SEQ").toString()));
 				jo.addProperty("STATE", Integer.parseInt(o.get("STATE").toString()));
-				jo.addProperty("NICKNAME", o.get("NICKNAME").toString());
+				jo.addProperty("NICKNAME", o.get("NICKNAME").toString()==null?"":o.get("NICKNAME").toString());
 				jo.addProperty("TITLE", o.get("TITLE").toString());
 				jo.addProperty("LOCATION_NAME", o.get("LOCATION_NAME").toString());
 				jo.addProperty("START_DATE", o.get("START_DATE").toString());
