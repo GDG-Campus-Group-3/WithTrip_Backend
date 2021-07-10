@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+
+	<bean id = "dsDrink" class = "org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+		<property name="url" value="jdbc:mysql://3.35.83.31:43306/sma_test1?characterEncoding=UTF-8&amp;useSSL=false"/>
+		<property name="username" value="kusma"/>
+		<property name="password" value="kusma"/>
+		<property name="maxActive" value="50"/>
+		<property name="maxIdle" value="10"/>
+		<property name="maxWait" value="20000"/>
+		<property name="validationQuery" value="select 1"/>
+	</bean>
+	
+    <bean id = "drinkdao" class = "dao.DrinkDaoImpl">
+        <property name="dataSource"><ref bean = "dsDrink"/></property>
+    </bean>
+    <bean id = "admindao" class = "dao.AdminDaoImpl">
+        <property name="dataSource"><ref bean = "dsDrink"/></property>
+    </bean>
+</beans>

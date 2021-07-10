@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. -->
+<project basedir="." default="build" name="MainProject">
+    <property environment="env"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="1.8"/>
+    <property name="source" value="1.8"/>
+	<property name = "findbugs.home" value = "/export/home/daveho/work/findbugs"/>
+    <path id="Apache Tomcat v8.0 [Apache Tomcat v8.0].libraryclasspath">
+    	<fileset dir="/usr/local/lib/apache-tomcat-8.5.65/lib">
+    	      <include name="*.jar" />
+    	</fileset>
+    </path>
+	<path id="Web App Libraries.libraryclasspath">
+	    	<fileset dir="WebContent/WEB-INF/lib">
+	   	        <include name="*.jar" />
+			</fileset>
+	</path>
+    <path id="EAR Libraries.libraryclasspath"/>
+    <path id="MainProject.classpath">
+        <pathelement location="WebContent/WEB-INF/classes"/>
+        <path refid="Apache Tomcat v8.0 [Apache Tomcat v8.0].libraryclasspath"/>
+        <path refid="Web App Libraries.libraryclasspath"/>
+        <path refid="EAR Libraries.libraryclasspath"/>
+    </path>
+    <target name="init">
+        <mkdir dir="WebContent/WEB-INF/classes"/>
+        <copy includeemptydirs="false" todir="WebContent/WEB-INF/classes">
+            <fileset dir="src">
+                <exclude name="**/*.launch"/>
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="clean">
+        <delete dir="WebContent/WEB-INF/classes"/>
+    </target>
+	<target name="publish">
+	    <delete dir="/var/main/MainProject"/>
+		<mkdir dir="/var/main/MainProject"/>
+		<copy includeemptydirs="false" todir="/var/main/MainProject">
+		     <fileset dir="WebContent">
+		         <exclude name="**/*.launch"/>
+		         <exclude name="**/*.java"/>
+		     </fileset>
+		</copy>
+	</target>
+
+	<target name="copy">
+		<copy includeemptydirs="false" todir="/var/main/MainProject">
+		     <fileset dir="WebContent">
+		         <exclude name="**/*.launch"/>
+		         <exclude name="**/*.java"/>
+		     </fileset>
+		</copy>
+	</target>
+
+	<target name="tomcat_stop">
+		 <sleep seconds="5"/>
+	    <echo>stoping Tomcat server instance</echo>
+	    <exec executable="/SCRIPT/tomcatd" >
+	        <arg value="stop" />
+	    	<arg value="1" />
+	   	</exec>
+	</target>
+	<target name="tomcat_start">
+		 <sleep seconds="5"/>
+	    <echo>starting Tomcat server instance</echo>
+	    <exec executable="/SCRIPT/tomcatd" >
+	        <arg value="start" />
+	    	<arg value="1" />
+	   	</exec>
+	</target>
+	
+	<target name="restart">
+	    <echo>Restarting Tomcat server instance</echo>
+	    <exec executable="/SCRIPT/tomcatd" >
+	        <arg value="restart" />
+	    	<arg value="1" />
+	   	</exec>
+	</target>
+
+	<target depends="clean" name="cleanall"/>
+	<target depends="build-subprojects,build-project,publish,tomcat_stop,tomcat_start" name="cleanbuild"/>
+    <target depends="build-subprojects,build-project,publish,tomcat_stop,tomcat_start" name="build"/>
+    <target name="build-subprojects"/>
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="WebContent/WEB-INF/classes" encoding="utf-8" source="${source}" target="${target}">
+            <src path="src"/>
+            <classpath refid="MainProject.classpath"/>
+        </javac>
+    </target>
+	
+</project>
+

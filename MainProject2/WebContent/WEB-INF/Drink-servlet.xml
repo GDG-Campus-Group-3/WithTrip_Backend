@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	 
+	<bean id = "drinkManager" class = "manager.DrinkManager">
+        <constructor-arg><ref bean="drinkdao"/></constructor-arg>
+    </bean>
+	<bean id = "secureHandlerMapping" class = "org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<props>
+				<prop key = "getDrinkList">controllerActionDrink</prop>
+				<prop key = "addNewDrink">controllerActionDrink</prop>
+				<prop key = "buyDrink">controllerActionDrink</prop>
+				<prop key = "getDrinkInfoFromOtherDVM">controllerActionDrink</prop>
+				<prop key = "getLocationInfo">controllerActionDrink</prop>
+				<prop key = "inputPC">controllerActionDrink</prop>
+				<prop key = "answerPrecodeInfo">controllerActionDrink</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<bean id = "controllerActionDrink" class = "controller.ActionDrink">
+		<property name="methodNameResolver"><ref bean = "methodNameResolver"/></property>
+	</bean>
+	
+	<bean id = "methodNameResolver" class = "org.springframework.web.servlet.mvc.multiaction.PropertiesMethodNameResolver">
+		<property name="mappings">
+			<props>
+				<prop key = "/getDrinkList">getDrinkList</prop>
+				<prop key = "/addNewDrink">addNewDrink</prop>
+				<prop key = "/buyDrink">buyDrink</prop>
+				<prop key = "/getDrinkInfoFromOtherDVM">getDrinkInfoFromOtherDVM</prop>
+				<prop key = "/getLocationInfo">getLocationInfo</prop>
+				<prop key = "/inputPC">inputPC</prop>
+				<prop key = "/answerPrecodeInfo">answerPrecodeInfo</prop>
+			</props>
+		</property>
+	</bean>
+	
+</beans>
