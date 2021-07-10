@@ -66,4 +66,16 @@ public class GDGManager {
 		joR.add("LIST", ja);
 		out.write(Func.getResultJson(joR));
 	}
+
+	public static void getBoardDetail(int seq, PrintWriter out) {
+		Map<String, Object> o = gdgdao.getBoardDetail(seq);
+		if ( o != null ) {
+			JsonObject jo = new JsonObject();
+			jo.addProperty("STATE", Integer.parseInt(o.get("STATE").toString()));
+			jo.addProperty("TAG", o.get("TAG").toString());
+			jo.addProperty("GPS", o.get("GPS").toString());
+			jo.addProperty("CONTENT", o.get("CONTENT").toString());
+			out.write(Func.getResultJson(jo));
+		}
+	}
 }

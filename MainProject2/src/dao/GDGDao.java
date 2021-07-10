@@ -9,4 +9,5 @@ public interface GDGDao {
 	public int getSeqFromId(String id);
 	public Map<String, Object> getUserInfo(int seq);
 	public List<Map<String, Object>> getBoardList();
+	public Map<String, Object> getBoardDetail(int seq);
 }
