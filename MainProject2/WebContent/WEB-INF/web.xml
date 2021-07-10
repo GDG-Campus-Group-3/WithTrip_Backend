@@ -49,4 +49,13 @@
     <servlet-name>Admin</servlet-name>
     <url-pattern>/admin/*</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>GDG</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GDG</servlet-name>
+    <url-pattern>/gdg/*</url-pattern>
+  </servlet-mapping>
 </web-app>

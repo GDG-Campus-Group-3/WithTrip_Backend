@@ -12,10 +12,25 @@
 		<property name="validationQuery" value="select 1"/>
 	</bean>
 	
+	<bean id = "dsGDG" class = "org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+		<property name="url" value="jdbc:mysql://54.180.157.33:3306/gdg?characterEncoding=UTF-8&amp;useSSL=false"/>
+		<property name="username" value="root"/>
+		<property name="password" value="1234"/>
+		<property name="maxActive" value="50"/>
+		<property name="maxIdle" value="10"/>
+		<property name="maxWait" value="20000"/>
+		<property name="validationQuery" value="select 1"/>
+	</bean>
+	
     <bean id = "drinkdao" class = "dao.DrinkDaoImpl">
         <property name="dataSource"><ref bean = "dsDrink"/></property>
     </bean>
     <bean id = "admindao" class = "dao.AdminDaoImpl">
         <property name="dataSource"><ref bean = "dsDrink"/></property>
+    </bean>
+    
+    <bean id = "gdgdao" class = "dao.GDGDaoImpl">
+        <property name="dataSource"><ref bean = "dsGDG"/></property>
     </bean>
 </beans>
