@@ -10,7 +10,7 @@ public interface GDGDao {
 	public Map<String, Object> getUserInfo(int seq);
 	public List<Map<String, Object>> getBoardList();
 	public Map<String, Object> getBoardDetail(int seq);
-	public int newBoard(String tag, String title, String gps, String location_name, String start_date,
+	public int newBoard(int seq, String tag, String title, String gps, String location_name, String start_date,
 			String last_date, int count, String content);
 	public int getBoardOwnerSeq(int seq);
 	public int deleteBoard(int seq);

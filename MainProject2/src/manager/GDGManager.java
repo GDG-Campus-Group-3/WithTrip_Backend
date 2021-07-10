@@ -52,7 +52,7 @@ public class GDGManager {
 				JsonObject jo = new JsonObject();
 				jo.addProperty("SEQ", Integer.parseInt(o.get("SEQ").toString()));
 				jo.addProperty("STATE", Integer.parseInt(o.get("STATE").toString()));
-				jo.addProperty("NICKNAME", o.get("NICKNAME").toString()==null?"":o.get("NICKNAME").toString());
+				jo.addProperty("NICKNAME", o.get("NICKNAME")==null?"":o.get("NICKNAME").toString());
 				jo.addProperty("TITLE", o.get("TITLE").toString());
 				jo.addProperty("LOCATION_NAME", o.get("LOCATION_NAME").toString());
 				jo.addProperty("START_DATE", o.get("START_DATE").toString());
@@ -79,8 +79,8 @@ public class GDGManager {
 		}
 	}
 
-	public static void newBoard(String tag, String title, String gps, String location_name, String start_date, String last_date, int count, String content, PrintWriter out) {
-		gdgdao.newBoard(tag, title, gps, location_name, start_date, last_date, count, content);
+	public static void newBoard(int seq, String tag, String title, String gps, String location_name, String start_date, String last_date, int count, String content, PrintWriter out) {
+		gdgdao.newBoard(seq, tag, title, gps, location_name, start_date, last_date, count, content);
 		out.write(Func.getResultJson(new JsonObject()));
 	}
 

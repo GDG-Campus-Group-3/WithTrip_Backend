@@ -108,6 +108,7 @@ public class ActionGDG extends MultiActionController {
 			return;
 		}
 
+		int seq = Integer.parseInt(request.getParameter("USER_SEQ"));
 		String tag = request.getParameter("TAG");
 		String title = request.getParameter("TITLE");
 		String gps = request.getParameter("GPS");
@@ -116,7 +117,7 @@ public class ActionGDG extends MultiActionController {
 		String last_date = request.getParameter("LAST_DATE");
 		int count = Integer.parseInt(request.getParameter("COUNT"));
 		String content = request.getParameter("CONTENT");
-		GDGManager.newBoard(tag, title, gps, location_name, start_date, last_date, count, content, out);
+		GDGManager.newBoard(seq, tag, title, gps, location_name, start_date, last_date, count, content, out);
 	}
 
 	public void getBoardOwnerSeq(HttpServletRequest request, HttpServletResponse response) throws Exception {
