@@ -13,6 +13,8 @@
 				<prop key = "getBoardList">controllerActionGDG</prop>
 				<prop key = "getBoardDetail">controllerActionGDG</prop>
 				<prop key = "newBoard">controllerActionGDG</prop>
+				<prop key = "getBoardOwnerSeq">controllerActionGDG</prop>
+				<prop key = "deleteBoard">controllerActionGDG</prop>
 			</props>
 		</property>
 	</bean>
@@ -30,6 +32,8 @@
 				<prop key = "/getBoardList">getBoardList</prop>
 				<prop key = "/getBoardDetail">getBoardDetail</prop>
 				<prop key = "/newBoard">newBoard</prop>
+				<prop key = "/getBoardOwnerSeq">getBoardOwnerSeq</prop>
+				<prop key = "/deleteBoard">deleteBoard</prop>
 			</props>
 		</property>
 	</bean>

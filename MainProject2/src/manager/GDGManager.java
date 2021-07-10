@@ -11,7 +11,6 @@ import com.google.gson.JsonObject;
 import common.Func;
 import dao.DrinkDao;
 import dao.GDGDao;
-import oracle.net.aso.l;
 
 public class GDGManager {
 
@@ -79,9 +78,21 @@ public class GDGManager {
 			out.write(Func.getResultJson(jo));
 		}
 	}
-	
+
 	public static void newBoard(String tag, String title, String gps, String location_name, String start_date, String last_date, int count, String content, PrintWriter out) {
 		gdgdao.newBoard(tag, title, gps, location_name, start_date, last_date, count, content);
 		out.write(Func.getResultJson(new JsonObject()));
+	}
+
+	public static void getBoardOwnerSeq(int seq, PrintWriter out) {
+		JsonObject jo = new JsonObject();
+		jo.addProperty("SEQ", gdgdao.getBoardOwnerSeq(seq));
+		out.write(Func.getResultJson(jo));
+	}
+	
+	public static void deleteBoard(int seq, PrintWriter out) {
+		JsonObject jo = new JsonObject();
+		jo.addProperty("STATE", gdgdao.deleteBoard(seq));
+		out.write(Func.getResultJson(jo));
 	}
 }

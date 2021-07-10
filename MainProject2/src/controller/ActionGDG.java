@@ -118,4 +118,36 @@ public class ActionGDG extends MultiActionController {
 		String content = request.getParameter("CONTENT");
 		GDGManager.newBoard(tag, title, gps, location_name, start_date, last_date, count, content, out);
 	}
+
+	public void getBoardOwnerSeq(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		PrintWriter		out;
+		
+		try {
+			response.setContentType("text/html; charset=utf-8");
+
+			out = response.getWriter();
+		}
+		catch (IOException ioe) {
+			return;
+		}
+
+		int seq = Integer.parseInt(request.getParameter("SEQ"));
+		GDGManager.getBoardOwnerSeq(seq, out);
+	}
+
+	public void deleteBoard(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		PrintWriter		out;
+		
+		try {
+			response.setContentType("text/html; charset=utf-8");
+
+			out = response.getWriter();
+		}
+		catch (IOException ioe) {
+			return;
+		}
+
+		int seq = Integer.parseInt(request.getParameter("SEQ"));
+		GDGManager.deleteBoard(seq, out);
+	}
 }

@@ -38,4 +38,12 @@ public class GDGDaoImpl extends JdbcDaoSupport implements GDGDao{
 		final String query = "INSERT INTO `board` (`WRITER_SEQ`, `TAG`, `TITLE`, `GPS`, `LOCATION_NAME`, `START_DATE`, `LAST_DATE`, `COUNT`, `CONTENT`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		return (Integer) getJdbcTemplate().update(query, new PSSetDao.PSSForStringsIntsStrings(6, 1, 1, tag, title, gps, location_name, start_date, last_date, count, content));
 	}
+	public int getBoardOwnerSeq(int seq) {
+		final String query = "select WRITER_SEQ from board where seq=?";
+		return (Integer) getJdbcTemplate().query(query, new PSSetDao.PSSForInt(seq), new ResultDao.RSEForInt());
+	}
+	public int deleteBoard(int seq) {
+		final String query = "update board set state=100 where seq=?";
+		return (Integer) getJdbcTemplate().update(query, new PSSetDao.PSSForInt(seq));
+	}
 }
