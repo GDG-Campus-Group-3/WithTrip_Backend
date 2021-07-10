@@ -66,4 +66,18 @@ public class ActionGDG extends MultiActionController {
 		GDGManager.getUserInfo(seq, out);
 	}
 
+	public void getBoardList(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		PrintWriter		out;
+		
+		try {
+			response.setContentType("text/html; charset=utf-8");
+
+			out = response.getWriter();
+		}
+		catch (IOException ioe) {
+			return;
+		}
+		GDGManager.getBoardList(out);
+	}
+
 }

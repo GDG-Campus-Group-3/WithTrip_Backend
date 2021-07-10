@@ -8,4 +8,5 @@ public interface GDGDao {
 	public int newUser(String id, String pw, String nickname, String ex);
 	public int getSeqFromId(String id);
 	public Map<String, Object> getUserInfo(int seq);
+	public List<Map<String, Object>> getBoardList();
 }

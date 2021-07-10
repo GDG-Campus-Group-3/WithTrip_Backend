@@ -10,6 +10,7 @@
 				<prop key = "checkId">controllerActionGDG</prop>
 				<prop key = "newUser">controllerActionGDG</prop>
 				<prop key = "getUserInfo">controllerActionGDG</prop>
+				<prop key = "getBoardList">controllerActionGDG</prop>
 			</props>
 		</property>
 	</bean>
@@ -24,6 +25,7 @@
 				<prop key = "/checkId">checkId</prop>
 				<prop key = "/newUser">newUser</prop>
 				<prop key = "/getUserInfo">getUserInfo</prop>
+				<prop key = "/getBoardList">getBoardList</prop>
 			</props>
 		</property>
 	</bean>

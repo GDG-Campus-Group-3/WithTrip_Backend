@@ -44,4 +44,26 @@ public class GDGManager {
 		}
 	}
 
+	public static void getBoardList(PrintWriter out) {
+		List<Map<String, Object>> list = gdgdao.getBoardList();
+		JsonArray ja = new JsonArray();
+		if ( list != null && list.size() > 0 ) {
+			for ( Map<String, Object> o:list ) {
+				JsonObject jo = new JsonObject();
+				jo.addProperty("SEQ", Integer.parseInt(o.get("SEQ").toString()));
+				jo.addProperty("STATE", Integer.parseInt(o.get("STATE").toString()));
+				jo.addProperty("NICKNAME", o.get("NICKNAME").toString());
+				jo.addProperty("TITLE", o.get("TITLE").toString());
+				jo.addProperty("LOCATION_NAME", o.get("LOCATION_NAME").toString());
+				jo.addProperty("START_DATE", o.get("START_DATE").toString());
+				jo.addProperty("LAST_DATE", o.get("LAST_DATE").toString());
+				jo.addProperty("MAX_COUNT", Integer.parseInt(o.get("COUNT").toString()));
+				jo.addProperty("NOW_COUNT", Integer.parseInt(o.get("NOW_COUNT").toString()));
+				ja.add(jo);
+			}
+		}
+		JsonObject joR = new JsonObject();
+		joR.add("LIST", ja);
+		out.write(Func.getResultJson(joR));
+	}
 }

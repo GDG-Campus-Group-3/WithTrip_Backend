@@ -25,4 +25,8 @@ public class GDGDaoImpl extends JdbcDaoSupport implements GDGDao{
 		final String query = "select z.NICKNAME, z.EX from user as z where z.SEQ=?";
 		return (Map<String, Object>) getJdbcTemplate().query(query, new PSSetDao.PSSForInt(seq), new ResultDao.RSEForResult());
 	}
+	public List<Map<String, Object>> getBoardList() {
+		final String query = "SELECT u.SEQ, u.STATE, (SELECT NICKNAME FROM user WHERE SEQ=u.WRITER_SEQ) AS NICKNAME, u.TITLE, u.LOCATION_NAME, u.START_DATE, u.LAST_DATE, u.COUNT, (SELECT COUNT(SEQ) FROM follow_board_info WHERE STATE=0 AND BOARD_SEQ=u.SEQ) AS NOW_COUNT FROM board AS u WHERE u.STATE<100 ORDER BY u.STATE, u.START_DATE DESC";
+		return (List<Map<String, Object>>) getJdbcTemplate().query(query, new ResultDao.RSEForResultListSet());
+	}
 }
